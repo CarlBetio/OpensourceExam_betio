@@ -1,6 +1,4 @@
-<?php
-    
-?>
+
 <html>
 
 <head>
@@ -9,7 +7,7 @@
 </head>
 
 <body>
-	<form action="" method="post">
+	<form action="save.php" method="post">
 	<h1>Library Database</h1>
 	<fieldset>
 		<legend>Book Information</legend>
@@ -30,11 +28,48 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
-                <?php
-                
-                ?>
-            </tbody>
+               <tbody>
+                                                            <?php
+                                             
+                                                                    $conn = new mysqli("localhost", "root", "", "exam") or die(mysqli_error());
+                                                                   $query = $conn->query("SELECT * FROM `bookinfo`") or die(mysqli_error());
+                                                                
+                                                                   while($fetch = $query ->fetch_array()){
+                                                                ?>
+                                                                <tr>
+                                                                    <td>
+                                                                       
+                                                                            <?php echo $fetch['title']?>
+                                                         
+                                                                    </td>
+                                                                    <td>
+                                                                    
+                                                                            <?php echo $fetch['pages']?>
+                                                    
+                                                                    </td>
+                                                                    <td>
+                                                                    
+                                                                            <?php echo $fetch['author']?>
+                                                                
+                                                                    </td>
+                                                                      <td>
+                                                                    
+                                                                            <?php echo $fetch['year']?>
+                                                                
+                                                                    </td>
+                                                                      <td>
+                                                                    
+                                                                            <?php echo "Update"?>
+                                                                
+                                                                    </td>
+
+
+                                                                </tr>
+                                                                <?php
+                                                                   }
+                                                                ?>
+
+                                                        </tbody>
         </table>
 	</form>
     <script type="text/javascript" src="assets/js/jquery-1.10.2.js"></script>
@@ -43,7 +78,6 @@
 			alert("A new book has been successfully added!");
 		}
 	</script>
-<?php 
-    $dbconn->close();
+
 </body>
 </html>
